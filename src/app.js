@@ -3,6 +3,8 @@ import About from './containers/About';
 import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
 import AccountHome from './containers/AccountHome';
+import React from 'react';
+import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
@@ -31,12 +33,7 @@ class App extends React.Component {
         window.location.pathname = '/';
       });
     } else {
-      this.setState({accountId: null, token: null, email: null}, () => {
-        window.localStorage.removeItem('QueueTime_Account');
-        window.localStorage.removeItem('QueueTime_Email');
-        window.localStorage.removeItem('QueueTime_Token');
-        window.location.pathname = '/';
-      });
+      this.signOut();
     }
   };
 
@@ -50,6 +47,15 @@ class App extends React.Component {
       this.setState({accountId: null, token: null, email: null});
     }
   };
+
+  signOut = () => {
+    this.setState({accountId: null, token: null, email: null}, () => {
+      window.localStorage.removeItem('QueueTime_Account');
+      window.localStorage.removeItem('QueueTime_Email');
+      window.localStorage.removeItem('QueueTime_Token');
+      window.location.pathname = '/';
+    });
+  }
 
   authorized = () => {
     return (this.state.accountId && this.state.email && this.state.token);
@@ -86,7 +92,7 @@ class App extends React.Component {
             <SignIn {...this.props} setUser={this.setUser}/>
           )}/>
           <Route path="/:account_id" render={() => this.renderAuthorizedRoute(
-            <AccountHome {...this.props} accountId={this.state.accountId} token={this.state.token}/>
+            <AccountHome {...this.props} {...this.state} handleSignOut={this.signOut}/>
           )}/>
         </Switch>
       </Router>

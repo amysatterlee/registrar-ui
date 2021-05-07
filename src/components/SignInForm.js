@@ -1,6 +1,8 @@
+import React, { useState } from 'react';
+
 const SignInForm = ({ handleSubmit }) => {
-    const [emailValue, setEmailValue] = React.useState('');
-    const [passwordValue, setPasswordValue] = React.useState('');
+    const [emailValue, setEmailValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
 
     const updateEmail = (event) => {
         setEmailValue(event.target.value);
