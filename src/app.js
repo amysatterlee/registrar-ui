@@ -3,12 +3,12 @@ import About from './containers/About';
 import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
 import AccountHome from './containers/AccountHome';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       accountId: null,
       token: null
     }
@@ -18,7 +18,7 @@ class App extends React.Component {
     this.getUser();
   }
 
-  updateUser = ({accountId, token}) => {
+  setUser = (accountId, token) => {
     // the only time this should be called is when the user logs in successfully
     // or signs out
     if (accountId && token) {
@@ -42,6 +42,15 @@ class App extends React.Component {
     }
   };
 
+  authorizedRender = (component) => {
+    if (this.state.accountId && this.state.token) {
+      // valid account and token, go to authorized route
+      return component;
+    } else {
+      return <Redirect to="/signin"/>;
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -49,8 +58,12 @@ class App extends React.Component {
           <Route exact path="/" component={Home}/>
           <Route path="/about" component={About}/>
           <Route path="/signup" component={SignUp}/>
-          <Route path="/signin" component={SignIn}/>
-          <Route path="/:account_id" component={AccountHome}/>
+          <Route path="/signin" render={() => (
+            <SignIn {...this.props} setUser={this.setUser}/>
+          )}/>
+          <Route path="/:account_id" render={() => this.authorizedRender(
+            <AccountHome {...this.props} accountId={this.state.accountId} token={this.state.token}/>
+          )}/>
         </Switch>
       </Router>
     );

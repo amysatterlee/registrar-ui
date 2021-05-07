@@ -1,6 +1,13 @@
-const SignIn = () => {
+import SignInForm from '../components/SignInForm';
+
+const SignIn = ({ setUser }) => {
+    const handleSubmit = (email, password) => {
+        console.log('submitted');
+        // TODO call api with email and password to validate account and get token and account id
+        // TODO pass account id and token to setUser
+    }
     return (
-        <h1>SignIn Page</h1>
+        <SignInForm handleSubmit={handleSubmit}/>
     );
 };
 
