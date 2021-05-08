@@ -5,16 +5,23 @@ const EventCard = ({ event }) => {
     return (
         <div className='card'>
             <div className='cardheader'>
-                <div>{event.title}</div>
+                <div className='headertext'>{event.title}</div>
+                <button className='iconbutton'>
+                    <i class="far fa-edit fa-lg"></i>
+                </button>
+                <br></br>
+                <button className='iconbutton'>
+                    <i class='far fa-trash-alt fa-lg'></i>
+                </button>
             </div>
             <div className='cardbody'>
                 <div className='cardtext'>
                     <div>{event.details.description}</div>
                 </div>
                 <div className='carddetails'>
-                    <div className='carddetail'><bold>Date:</bold> {event.details.date}</div>
-                    <div className='carddetail'><bold>Time:</bold> {event.details.time}</div>
-                    <div className='carddetail'><bold>Tickets:</bold> {event.details.maxTickets}</div>
+                    <div className='carddetail'><strong>Date:</strong> {event.details.date}</div>
+                    <div className='carddetail'><strong>Time:</strong> {event.details.time}</div>
+                    <div className='carddetail'><strong>Tickets:</strong> {event.details.maxTickets}</div>
                 </div>
             </div>
         </div>
