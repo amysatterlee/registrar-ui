@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchEvents } from '../api/events';
 import { callApi } from '../helpers/helpers';
 import EventsIndex from '../components/EventsIndex';
+import EventsHeader from '../components/EventsHeader';
 
 const Events = ({ accountId, token, email }) => {
     const [events, setEvents] = useState([]);
@@ -19,7 +20,10 @@ const Events = ({ accountId, token, email }) => {
     }, []);
 
     return (
-        <EventsIndex events={events}/>
+        <>
+            <EventsHeader />
+            <EventsIndex events={events}/>
+        </>
     )
 };
 

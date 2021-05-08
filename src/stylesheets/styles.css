@@ -57,6 +57,7 @@
 
 .headertext {
     flex: 1;
+    font-size: 20px;
 }
 
 .iconbutton {
@@ -89,4 +90,34 @@
 .carddetail {
     flex: 1;
     font-size: 20px;
+}
+
+.cardlistheader {
+    width: 66%;
+    margin: auto;
+    background: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.bigbutton {
+    border: solid 2px #CC99CC;
+    border-radius: 3px;
+    background: transparent;
+    margin: 20px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.bigbutton:hover {
+    cursor: pointer;
+}
+
+.pageheader {
+    flex: 1;
+    margin: 20px;
+    font-size: 24px;
 }
