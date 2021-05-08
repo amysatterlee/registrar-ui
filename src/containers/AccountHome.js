@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import AccountNavBar from '../components/AccountNavBar';
+import Dashboard from './Dashboard';
+import Events from './Events';
+import FAQ from './FAQ';
 
 const AccountHome = ({ accountId, token, email, handleSignOut }) => {
     const [view, setView] = useState('dashboard');
@@ -16,8 +19,24 @@ const AccountHome = ({ accountId, token, email, handleSignOut }) => {
         console.log('AccountHome useEffect');
     }, []);
 
+    const renderView = () => {
+        switch(view) {
+            case 'dashboard':
+                return <Dashboard accountId={accountId} token={token} email={email}/>;
+            case 'events':
+                return <Events accountId={accountId} token={token} email={email}/>;
+            case 'faq':
+                return <FAQ />;
+            default:
+                return <Dashboard accountId={accountId} token={token} email={email}/>;
+        }
+    }
+
     return (
-        <AccountNavBar options={options} />
+        <>
+            <AccountNavBar options={options} />
+            {renderView()}
+        </>
     );
 };
 

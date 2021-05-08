@@ -10,3 +10,10 @@ export const callApi = ({api, successCb, failureCb}) => {
         failureCb(err.messsage);
     })
 }
+
+export const authHeaders = (token) => {
+    return {
+        'Content-Type': 'application/json',
+        'Authorization': token
+    }
+  };
