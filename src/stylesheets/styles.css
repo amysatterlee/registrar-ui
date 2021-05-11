@@ -2,8 +2,6 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     background: #CC99CC;
 }
 
@@ -28,14 +26,16 @@
     cursor: pointer;
 }
 
-.cardList {
+.container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 66%;
     margin: auto;
-    background: whitesmoke;
+}
+
+.center-items {
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
@@ -43,6 +43,7 @@
     margin: 20px 0px 0px 0px;
     border: solid 2px #CC99CC;
     border-radius: 5px;
+    background: white;
 }
 
 .cardheader {
@@ -95,18 +96,17 @@
 .cardlistheader {
     width: 66%;
     margin: auto;
-    background: whitesmoke;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin-top: 20px;
 }
 
 .bigbutton {
     border: solid 2px #CC99CC;
-    border-radius: 3px;
-    background: transparent;
+    border-radius: 5px;
+    background: #CC99CC;
     margin: 20px;
     padding: 10px;
     font-size: 18px;
@@ -114,10 +114,73 @@
 
 .bigbutton:hover {
     cursor: pointer;
+    background: #D1A3D1;
 }
 
 .pageheader {
     flex: 1;
     margin: 20px;
     font-size: 24px;
+}
+
+.forminput {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    font-size: 18px;
+    justify-content: center;
+}
+
+.forminput input {
+    font-size: 18px;
+    border: solid 2px #D1A3D1;
+    border-radius: 5px;
+    width: 100%;
+    padding: 5px;
+    margin-top: 3px;
+}
+
+.forminput input:focus-visible {
+    border-color: #B789B7;
+    outline: none;
+}
+
+.formsection {
+    margin: 20px;
+}
+
+.formsection .header {
+    font-size: 18px;
+    border-bottom: solid 1px #D1A3D1;
+}
+
+.formrow {
+    display: flex;
+    flex-direction: row;
+}
+
+.formrow .forminput {
+    flex: 1;
+}
+
+.forminput .checkbox {
+    width: auto;
+}
+
+input[type=checkbox] {
+    transform: scale(1.5);
+    margin: 0px 10px;
+}
+
+.formsubsection {
+    border-bottom: solid 1px #D1A3D1;
+}
+
+.formsectiontoggle {
+    margin: 20px 0px;
+    font-size: 18px;
+}
+
+.row-right {
+    justify-content: flex-end;
 }

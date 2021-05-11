@@ -4,7 +4,7 @@ import EventCard from './EventCard';
 
 const EventsIndex = ({ events }) => {
     return (
-        <div className='cardlist'>
+        <div className='container center-items'>
             {events.map(event => (
                 <EventCard key={event.id} event={event}/>
             ))}

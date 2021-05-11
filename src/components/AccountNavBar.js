@@ -4,7 +4,7 @@ import NavButton from './NavButton';
 
 const AccountNavBar = ({ options }) => {
     return (
-        <div className='navbar'>
+        <div className='navbar center-items'>
             {options.map(option => (
                 <NavButton
                     key={option.id}

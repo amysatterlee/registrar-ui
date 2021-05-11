@@ -7,11 +7,11 @@ const EventCard = ({ event }) => {
             <div className='cardheader'>
                 <div className='headertext'>{event.title}</div>
                 <button className='iconbutton'>
-                    <i class="far fa-edit fa-lg"></i>
+                    <i className="far fa-edit fa-lg"></i>
                 </button>
                 <br></br>
                 <button className='iconbutton'>
-                    <i class='far fa-trash-alt fa-lg'></i>
+                    <i className='far fa-trash-alt fa-lg'></i>
                 </button>
             </div>
             <div className='cardbody'>
