@@ -15,7 +15,7 @@ const Events = ({ accountId, token, email }) => {
         callApi({
             api: fetchEvents(accountId, token),
             successCb: resp => {
-                console.log(resp);
+                console.log(resp.events);
                 setEvents(resp.events)
             },
             failureCb: err => console.log(err)

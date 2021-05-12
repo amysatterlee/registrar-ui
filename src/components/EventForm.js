@@ -1,82 +1,77 @@
 import React, { useState, useEffect } from 'react';
+import FormInput from './FormInput';
+import TicketOptions from './TicketOptions';
+
+const defaultTicketOptions = [
+    { id: 1, date: '', time: '', tickets: 0, multiprice: false, price: 0.0 }
+];
 
 const EventFrom = ({ event }) => {
-    const [editingEvent, setEditingEvent] = useState(null);
+    const [editingEvent, setEditingEvent] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [maxTickets, setMaxTickets] = useState(0);
-    const [price, setPrice] = useState(0.0);
-    const [multiprice, setMultiprice] = useState(false);
+    const [ticketOptions, setTicketOptions] = useState([...defaultTicketOptions]);
+    /*
+        [
+            { id: , date: , time: , tickets: , multiprice: false, price: },
+            { id: , date: , time: , tickets: , multiprice: true, prices: [ { price: , description: } ] }
+        ]
+    */
 
     useEffect(() => {
         if (event) {
-            setEditingEvent(event);
+            console.log(event);
+            setEditingEvent(true);
+            setTitle(event.title);
         }
-    }, []);
+    }, [event]);
+
+    const updateOption = (option) => {
+        const options = ticketOptions.map(item => {
+            if (item.id == option.id) {
+                return option;
+            }
+            return item;
+        });
+        setTicketOptions(options);
+    };
+
+    const handlePreview = (e) => {
+        e.preventDefault();
+        console.log('Preview clicked');
+    }
+
+    const handleSave = (e) => {
+        e.preventDefault();
+        console.log('Save clicked');
+    }
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        console.log('Cancel clicked');
+    }
 
     return (
         <div className='container'>
             <form className='form'>
-                <div className='forminput'>
-                    <label>
-                        Title:
-                        <input type='text' value={title} onChange={setTitle}/>
-                    </label>
-                </div>
-                <div className='forminput'>
-                    <label>
-                        Description:
-                        <input type='text' value={description} onChange={setDescription}/>
-                    </label>
-                </div>
-                <div className='formsection'>
-                    <div className='header'>Ticket options</div>
-                    <div className='formsubsection'>
-                        <div className='formrow'>
-                            <div className='forminput'>
-                                <label>
-                                    Date:
-                                    <input type='date' value={date} onChange={setDate}/>
-                                </label>
-                            </div>
-                            <div className='forminput'>
-                                <label>
-                                    Time:
-                                    <input type='time' value={time} onChange={setTime}/>
-                                </label>
-                            </div>
-                            <div className='forminput'>
-                                <label>
-                                    Tickets Available:
-                                    <input type='integer' value={maxTickets} onChange={setMaxTickets}/>
-                                </label>
-                            </div>
-                        </div>
-                        <div className='formrow'>
-                            <div className='forminput'>
-                                <label>
-                                    Price:
-                                    <input type='money' value={price} onChange={setPrice}/>
-                                </label>
-                            </div>
-                            <div className='forminput'>
-                                <label>
-                                    Multiple Prices:
-                                    <input className='checkbox' type='checkbox' value={multiprice} onChange={setMultiprice}/>
-                                </label>
-                            </div>
-                            <div className='forminput'></div>
-                        </div>
-                    </div>
-                    <div className='formsectiontoggle'>
-                        Add another date/time <i className='fas fa-plus fa-lg'></i>
-                    </div>
-                </div>
+                <FormInput
+                    label='Title:'
+                    inputType='text'
+                    value={title}
+                    handleChange={setTitle}
+                />
+                <FormInput
+                    label='Description:'
+                    inputType='textarea'
+                    value={description}
+                    handleChange={setDescription}
+                />
+                <TicketOptions options={ticketOptions} updateOption={updateOption}/>
+
                 <div className='formrow'>
-                    <button className='bigbutton'>Save</button>
-                    <button className='bigbutton'>Cancel</button>
+                    <button className='bigbutton' onClick={handlePreview}>Preview</button>
+                    <button className='bigbutton' onClick={handleSave}>Save</button>
+                    <button className='bigbutton' onClick={handleCancel}>Cancel</button>
                 </div>
             </form>
         </div>
