@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchEvents } from '../api/events';
+import { fetchEvents, createEvent } from '../api/events';
 import { callApi } from '../helpers/helpers';
 import EventsIndex from '../components/EventsIndex';
 import EventsHeader from '../components/EventsHeader';
@@ -15,17 +15,35 @@ const Events = ({ accountId, token, email }) => {
         callApi({
             api: fetchEvents(accountId, token),
             successCb: resp => {
-                console.log(resp.events);
+                console.log(resp.events)
                 setEvents(resp.events)
             },
             failureCb: err => console.log(err)
-        })
+        });
     }, []);
 
     const handleFormClick = () => {
         setEvent(null);
         setShowForm(true);
     };
+
+    const handleSave = (newEvent) => {
+        if (event) {
+            console.log('updating event');
+        } else {
+            addEvent(newEvent);
+        }
+    }
+
+    const addEvent = (newEvent) => {
+        callApi({
+            api: createEvent(accountId, newEvent, token),
+            successCb: resp => {
+                console.log(resp);
+            },
+            failureCb: err => { console.log(err) }
+        })
+    }
 
     const setTitle = () => {
         if (showForm) {
@@ -42,7 +60,7 @@ const Events = ({ accountId, token, email }) => {
         <>
             <EventsHeader title={setTitle()} handleFormClick={handleFormClick} formOpen={showForm}/>
             {showForm ? (
-                <EventForm event={event}/>
+                <EventForm event={event} saveEvent={handleSave}/>
             ) : (                    
                 <EventsIndex events={events}/>
             )}

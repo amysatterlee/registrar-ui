@@ -15,7 +15,7 @@ export const createEvent = (id, event, token) => {
   const url = `${BASE_URL}/accounts/${id}/events`;
   const payload = {
     method: 'POST',
-    hheaders: authHeaders(token),
+    headers: authHeaders(token),
     body: JSON.stringify(event)
   };
   return fetch(url, payload);
@@ -34,7 +34,7 @@ export const updateEvent = (accountId, eventId, event, token) => {
     const url = `${BASE_URL}/accounts/${accountId}/events/${eventId}`;
     const payload = {
       method: 'PUT',
-      hheaders: authHeaders(token),
+      headers: authHeaders(token),
       body: JSON.stringify(event)
     };
     return fetch(url, payload);

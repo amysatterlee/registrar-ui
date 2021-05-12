@@ -6,7 +6,7 @@ const defaultTicketOptions = [
     { id: 1, date: '', time: '', tickets: 0, multiprice: false, price: 0.0 }
 ];
 
-const EventFrom = ({ event }) => {
+const EventFrom = ({ event, saveEvent }) => {
     const [editingEvent, setEditingEvent] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -44,6 +44,9 @@ const EventFrom = ({ event }) => {
     const handleSave = (e) => {
         e.preventDefault();
         console.log('Save clicked');
+        const newEvent = { title, description, ticketOptions };
+        console.log(newEvent);
+        saveEvent(newEvent);
     }
 
     const handleCancel = (e) => {
