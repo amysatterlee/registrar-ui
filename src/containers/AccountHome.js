@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AccountNavBar from '../components/AccountNavBar';
+import AccountNavBar from '../components/navbar/AccountNavBar';
 import Dashboard from './Dashboard';
 import Events from './Events';
 import FAQ from './FAQ';

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../stylesheets/styles.css';
+import '../../stylesheets/styles.css';
 
 const NavButton = ({ onClick, title, icon }) => {
     return (

@@ -26,11 +26,15 @@
     cursor: pointer;
 }
 
-.container {
+.container, .sm-container {
     display: flex;
     flex-direction: column;
     width: 66%;
     margin: auto;
+}
+
+.sm-container {
+    width: 400px;
 }
 
 .center-items {
@@ -192,4 +196,8 @@ input[type=checkbox] {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.mar-10 {
+    margin: 10px;
 }

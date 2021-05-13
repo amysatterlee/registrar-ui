@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FormInput from './FormInput';
+import FormInput from '../common/FormInput';
 import TicketOptions from './TicketOptions';
 
 const defaultTicketOptions = [

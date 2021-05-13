@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { fetchEvents, createEvent, updateEvent } from '../api/events';
 import { callApi } from '../helpers/helpers';
-import EventsIndex from '../components/EventsIndex';
-import EventsHeader from '../components/EventsHeader';
-import EventForm from '../components/EventForm';
+import EventsIndex from '../components/events/EventsIndex';
+import EventsHeader from '../components/events/EventsHeader';
+import EventForm from '../components/events/EventForm';
 
 const Events = ({ accountId, token, email }) => {
     const [events, setEvents] = useState([]);

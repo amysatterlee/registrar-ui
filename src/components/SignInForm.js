@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
+import FormInput from './common/FormInput';
 
 const SignInForm = ({ handleSubmit }) => {
     const [emailValue, setEmailValue] = useState('');
     const [passwordValue, setPasswordValue] = useState('');
-
-    const updateEmail = (event) => {
-        setEmailValue(event.target.value);
-    }
-
-    const updatePassword = (event) => {
-        setPasswordValue(event.target.value);
-    }
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -18,17 +11,25 @@ const SignInForm = ({ handleSubmit }) => {
     }
 
     return (
-        <form>
-            <label>
-                Email:
-                <input type='text' value={emailValue} onChange={updateEmail}/>
-            </label>
-            <label>
-                Password:
-                <input type='password' value={passwordValue} onChange={updatePassword}/>
-            </label>
-            <button onClick={submitForm}>Sign In</button>
-        </form>
+        <div className='sm-container'>
+            <form className='form'>
+                <FormInput
+                    label='Email:'
+                    inputType='text'
+                    value={emailValue}
+                    handleChange={setEmailValue}
+                />
+                <FormInput
+                    label='Password:'
+                    inputType='password'
+                    value={passwordValue}
+                    handleChange={setPasswordValue}
+                />
+                <div className='formrow mar-10'>
+                    <button className='bigbutton' onClick={submitForm}>Sign In</button>
+                </div>
+            </form>
+        </div>
     )
 }
 
