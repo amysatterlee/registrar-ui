@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { fetchEvents, createEvent, updateEvent } from '../api/events';
+import { fetchEvents, createEvent, updateEvent, deleteEvent } from '../api/events';
 import { callApi } from '../helpers/helpers';
 import EventsIndex from '../components/events/EventsIndex';
 import EventsHeader from '../components/events/EventsHeader';
 import EventForm from '../components/events/EventForm';
+import ConfirmPrompt from '../components/common/ConfirmPrompt';
 
 const Events = ({ accountId, token, email }) => {
     const [events, setEvents] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [event, setEvent] = useState(null);
+    const [deleteModal, setDeleteModal] = useState(false);
 
     useEffect(() => {
         console.log('inside Events useEffect');
@@ -43,14 +45,29 @@ const Events = ({ accountId, token, email }) => {
         } else {
             addEvent(newEvent);
         }
-        updateIndex(newEvent);
+    };
+
+    const confirmDelete = (eventToDelete) => {
+        setEvent(eventToDelete);
+        setDeleteModal(true);
+    };
+
+    const handleDelete = () => {
+        removeEvent(event.id);
+        setEvent(null);
+        setDeleteModal(false);
     }
+
+    const cancelDelete = () => {
+        setEvent(null);
+        setDeleteModal(false);
+    };
 
     const addEvent = (newEvent) => {
         callApi({
             api: createEvent(accountId, newEvent, token),
             successCb: resp => {
-                console.log(resp);
+                updateIndex(newEvent);
             },
             failureCb: err => { console.log(err) }
         })
@@ -60,9 +77,22 @@ const Events = ({ accountId, token, email }) => {
         callApi({
             api: updateEvent(accountId, event.id, updatedEvent, token),
             successCb: resp => {
-                console.log(resp);
+                updateIndex(updatedEvent);
             },
             failureCb: err => { console.log(err) }
+        })
+    }
+
+    const removeEvent = (id) => {
+        callApi({
+            api: deleteEvent(accountId, id, token),
+            successCb: resp => {
+                const newEvents = events.filter(item => item.id != id)
+                setEvents(newEvents);
+            },
+            failureCb: err => {
+                console.log(err);
+            }
         })
     }
 
@@ -79,6 +109,7 @@ const Events = ({ accountId, token, email }) => {
             newEvents = events.slice();
             newEvents.push(newEvent);
         }
+        setEvent(null);
         setEvents(newEvents);
     }
 
@@ -99,7 +130,15 @@ const Events = ({ accountId, token, email }) => {
             {showForm ? (
                 <EventForm event={event} saveEvent={handleSave} closeForm={closeForm}/>
             ) : (                    
-                <EventsIndex events={events} editEvent={editEvent}/>
+                <EventsIndex events={events} editEvent={editEvent} deleteEvent={confirmDelete}/>
+            )}
+            {deleteModal && (
+                <ConfirmPrompt
+                    confirmText='Are you sure you want to delete this event?'
+                    confirmButtonText='Yes'
+                    handleConfirm={handleDelete}
+                    handleCancel={cancelDelete}
+                />
             )}
         </>
     )

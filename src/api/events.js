@@ -39,3 +39,12 @@ export const updateEvent = (accountId, eventId, event, token) => {
     };
     return fetch(url, payload);
 }
+
+export const deleteEvent = (accountId, eventId, token) => {
+    const url = `${BASE_URL}/accounts/${accountId}/events/${eventId}`;
+    const payload = {
+        method: 'DELETE',
+        headers: authHeaders(token)
+    }
+    return fetch(url, payload);
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../stylesheets/styles.css';
 
-const EventCard = ({ event, editEvent }) => {
+const EventCard = ({ event, editEvent, deleteEvent }) => {
 
     const renderWhen = (idx) => {
         return `${event.ticketOptions[idx].date} - ${event.ticketOptions[idx].time}`;
@@ -24,6 +24,11 @@ const EventCard = ({ event, editEvent }) => {
         editEvent(event);
     }
 
+    const handleDeleteClick = (e) => {
+        e.preventDefault();
+        deleteEvent(event);
+    }
+
     return (
         <div className='card'>
             <div className='cardheader'>
@@ -32,7 +37,7 @@ const EventCard = ({ event, editEvent }) => {
                     <i className="far fa-edit fa-lg"></i>
                 </button>
                 <br></br>
-                <button className='iconbutton'>
+                <button className='iconbutton' onClick={handleDeleteClick}>
                     <i className='far fa-trash-alt fa-lg'></i>
                 </button>
             </div>

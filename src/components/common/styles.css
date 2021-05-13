@@ -1,0 +1,39 @@
+.overlay {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(75, 75, 75, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background: white;
+    min-width: 350px;
+    border: solid 2px #CC99CC;
+    border-radius: 5px;
+}
+
+.modalbuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.modalheader {
+    width: auto;
+    background: #CC99CC;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.modaltext {
+    padding: 10px;
+    margin: 20px 0px;
+    font-size: 18px;
+}
