@@ -1,7 +1,7 @@
 import React from 'react';
 import '../stylesheets/styles.css';
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event, editEvent }) => {
 
     const renderWhen = (idx) => {
         return `${event.ticketOptions[idx].date} - ${event.ticketOptions[idx].time}`;
@@ -19,11 +19,16 @@ const EventCard = ({ event }) => {
         return 'https://example.com/this_is_my_url/for_the_event/click_it_now';
     }
 
+    const handleEditClick = (e) => {
+        e.preventDefault();
+        editEvent(event);
+    }
+
     return (
         <div className='card'>
             <div className='cardheader'>
                 <div className='headertext'>{event.title}</div>
-                <button className='iconbutton'>
+                <button className='iconbutton' onClick={handleEditClick}>
                     <i className="far fa-edit fa-lg"></i>
                 </button>
                 <br></br>

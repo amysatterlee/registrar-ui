@@ -6,7 +6,7 @@ const defaultTicketOptions = [
     { id: 1, date: '', time: '', tickets: 0, multiprice: false, price: 0.0 }
 ];
 
-const EventFrom = ({ event, saveEvent }) => {
+const EventFrom = ({ event, saveEvent, closeForm }) => {
     const [editingEvent, setEditingEvent] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -20,9 +20,10 @@ const EventFrom = ({ event, saveEvent }) => {
 
     useEffect(() => {
         if (event) {
-            console.log(event);
             setEditingEvent(true);
             setTitle(event.title);
+            setDescription(event.description);
+            setTicketOptions(event.ticketOptions);
         }
     }, [event]);
 
@@ -43,15 +44,14 @@ const EventFrom = ({ event, saveEvent }) => {
 
     const handleSave = (e) => {
         e.preventDefault();
-        console.log('Save clicked');
         const newEvent = { title, description, ticketOptions };
-        console.log(newEvent);
         saveEvent(newEvent);
+        closeForm();
     }
 
     const handleCancel = (e) => {
         e.preventDefault();
-        console.log('Cancel clicked');
+        closeForm();
     }
 
     return (
@@ -70,7 +70,6 @@ const EventFrom = ({ event, saveEvent }) => {
                     handleChange={setDescription}
                 />
                 <TicketOptions options={ticketOptions} updateOption={updateOption}/>
-
                 <div className='formrow'>
                     <button className='bigbutton' onClick={handlePreview}>Preview</button>
                     <button className='bigbutton' onClick={handleSave}>Save</button>

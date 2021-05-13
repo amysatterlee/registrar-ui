@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchEvents, createEvent } from '../api/events';
+import { fetchEvents, createEvent, updateEvent } from '../api/events';
 import { callApi } from '../helpers/helpers';
 import EventsIndex from '../components/EventsIndex';
 import EventsHeader from '../components/EventsHeader';
@@ -22,17 +22,28 @@ const Events = ({ accountId, token, email }) => {
         });
     }, []);
 
-    const handleFormClick = () => {
+    const openForm = () => {
         setEvent(null);
+        setShowForm(true);
+    };
+
+    const closeForm = () => {
+        setEvent(null);
+        setShowForm(false);
+    };
+
+    const editEvent = (eventToEdit) => {
+        setEvent(eventToEdit);
         setShowForm(true);
     };
 
     const handleSave = (newEvent) => {
         if (event) {
-            console.log('updating event');
+            changeEvent(newEvent);
         } else {
             addEvent(newEvent);
         }
+        updateIndex(newEvent);
     }
 
     const addEvent = (newEvent) => {
@@ -43,6 +54,32 @@ const Events = ({ accountId, token, email }) => {
             },
             failureCb: err => { console.log(err) }
         })
+    }
+
+    const changeEvent = (updatedEvent) => {
+        callApi({
+            api: updateEvent(accountId, event.id, updatedEvent, token),
+            successCb: resp => {
+                console.log(resp);
+            },
+            failureCb: err => { console.log(err) }
+        })
+    }
+
+    const updateIndex = (newEvent) => {
+        let newEvents;
+        if (event) {
+            newEvents = events.map(item => {
+                if (item.id == event.id) {
+                    return newEvent;
+                }
+                return item;
+            });
+        } else {
+            newEvents = events.slice();
+            newEvents.push(newEvent);
+        }
+        setEvents(newEvents);
     }
 
     const setTitle = () => {
@@ -58,11 +95,11 @@ const Events = ({ accountId, token, email }) => {
 
     return (
         <>
-            <EventsHeader title={setTitle()} handleFormClick={handleFormClick} formOpen={showForm}/>
+            <EventsHeader title={setTitle()} handleFormClick={openForm} formOpen={showForm}/>
             {showForm ? (
-                <EventForm event={event} saveEvent={handleSave}/>
+                <EventForm event={event} saveEvent={handleSave} closeForm={closeForm}/>
             ) : (                    
-                <EventsIndex events={events}/>
+                <EventsIndex events={events} editEvent={editEvent}/>
             )}
         </>
     )
