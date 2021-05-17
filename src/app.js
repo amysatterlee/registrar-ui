@@ -4,6 +4,7 @@ import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
 import AccountHome from './containers/AccountHome';
 import React from 'react';
+import Registration from './containers/Registration';
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -91,6 +92,10 @@ class App extends React.Component {
           <Route path="/signin" render={() => this.renderNonAuthorizedRoute(
             <SignIn {...this.props} setUser={this.setUser}/>
           )}/>
+          <Route path="/event" render={() => {
+            const eventId = window.location.search.replace('?id=', '');
+            return <Registration {...this.props} eventId={eventId}/>
+          }}/>
           <Route path="/:account_id" render={() => this.renderAuthorizedRoute(
             <AccountHome {...this.props} {...this.state} handleSignOut={this.signOut}/>
           )}/>

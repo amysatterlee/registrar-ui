@@ -18,7 +18,10 @@ const Events = ({ accountId, token, email }) => {
             api: fetchEvents(accountId, token),
             successCb: resp => {
                 console.log(resp.events)
-                setEvents(resp.events)
+                
+                setEvents(resp.events.map(item => (
+                    { ...item, url: `${window.location.origin}/event/${accountId}/${item.id}` }
+                )))
             },
             failureCb: err => console.log(err)
         });
@@ -107,7 +110,7 @@ const Events = ({ accountId, token, email }) => {
             });
         } else {
             newEvents = events.slice();
-            newEvents.push(newEvent);
+            newEvents.push({ ...newEvent, url: `${window.location.origin}/event/${accountId}/${event.id}` });
         }
         setEvent(null);
         setEvents(newEvents);

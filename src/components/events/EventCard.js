@@ -15,10 +15,6 @@ const EventCard = ({ event, editEvent, deleteEvent }) => {
         return (event.ticketOptions.length > 1);
     }
 
-    const renderUrl = () => {
-        return 'https://example.com/this_is_my_url/for_the_event/click_it_now';
-    }
-
     const handleEditClick = (e) => {
         e.preventDefault();
         editEvent(event);
@@ -46,8 +42,8 @@ const EventCard = ({ event, editEvent, deleteEvent }) => {
                     <div>{event.description}</div>
                 </div>
                 <div className='cardurl'>
-                    <div><i>{renderUrl()}</i></div>
-                    <button className='iconbutton'><i className="fas fa-external-link-alt fa-lg"></i></button>
+                    <div><i>{event.url}</i></div>
+                    <a href={event.url} target='_blank' className='iconbutton'><i className="fas fa-external-link-alt fa-lg"></i></a>
                 </div>
                 <div className='carddetails'>
                     <div className='carddetail'><strong>When:</strong> {renderWhen(0)}</div>

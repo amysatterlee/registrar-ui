@@ -1,0 +1,77 @@
+.fullpage {
+    height: 100%;
+}
+
+.eventpage {
+    height: 100%;
+    width: 100%;
+    background: grey;
+    color: whitesmoke;
+}
+
+.eventheader {
+    font-size: 50px;
+    padding-top: 50px;
+    padding-bottom: 5px;
+}
+
+.eventdetails {
+    background-image: url('../../images/genericevent.jpeg');
+    height: 60%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eventdetails div {
+    color: black;
+    background: whitesmoke;
+    padding: 5px;
+    width: 60%;
+}
+
+.cartline {
+    width: 100%;
+    background: whitesmoke;
+    color: black;
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.cartline button {
+    margin: 10px;
+}
+
+.ticketoptions {
+    background: whitesmoke;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.selectoption {
+    flex: 1;
+    margin: 5px;
+}
+
+.dropdownselect .displaytext {
+    padding: 5px;
+    border: solid 1px grey;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.dropdownselect select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px grey;
+    font-size: 16px;
+    background: whitesmoke;
+}

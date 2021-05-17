@@ -48,3 +48,12 @@ export const deleteEvent = (accountId, eventId, token) => {
     }
     return fetch(url, payload);
 }
+
+export const fetchPublicEvent = (eventId) => {
+    const url = `${BASE_URL}/events/${eventId}`;
+    const params = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch(url, params);
+}
