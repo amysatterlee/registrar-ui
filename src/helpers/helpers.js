@@ -16,4 +16,9 @@ export const authHeaders = (token) => {
         'Content-Type': 'application/json',
         'Authorization': token
     }
-  };
+};
+
+export const generateRandomId = () => {
+    const max = 99999;
+    return Math.floor(Math.random() * max);
+}

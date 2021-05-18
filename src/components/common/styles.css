@@ -37,3 +37,29 @@
     margin: 20px 0px;
     font-size: 18px;
 }
+
+.dropdownselect {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdownselect .displaytext {
+    padding: 5px;
+    border: solid 1px grey;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.dropdownselect select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px grey;
+    font-size: 16px;
+    background: whitesmoke;
+}
+
+.dropdownlabel {
+    font-size: 16px;
+    padding: 5px;
+}

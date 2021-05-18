@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import FormInput from '../common/FormInput';
 import TicketOptions from './TicketOptions';
+import { generateRandomId } from '../../helpers/helpers';
 
 const defaultTicketOptions = [
-    { id: 1, date: '', time: '', tickets: 0, multiprice: false, price: 0.0 }
+    { id: generateRandomId(), date: '', time: '', tickets: 0, multiprice: false, price: 0.0 }
 ];
 
 const EventFrom = ({ event, saveEvent, closeForm }) => {
-    const [editingEvent, setEditingEvent] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [ticketOptions, setTicketOptions] = useState([...defaultTicketOptions]);
     /*
         [
             { id: , date: , time: , tickets: , multiprice: false, price: },
-            { id: , date: , time: , tickets: , multiprice: true, prices: [ { price: , description: } ] }
+            { id: , date: , time: , tickets: , multiprice: true, prices: [ { id: , price: , description: } ] }
         ]
     */
 
     useEffect(() => {
         if (event) {
-            setEditingEvent(true);
             setTitle(event.title);
             setDescription(event.description);
             setTicketOptions(event.ticketOptions);
