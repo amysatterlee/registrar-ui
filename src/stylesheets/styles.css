@@ -1,203 +1,103 @@
-.navbar {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    background: #CC99CC;
-}
-
-.navbutton {
-    padding: 10px;
-    width: 120px;
-    border: none;
+.centeredcolumn {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    background: inherit;
+    justify-content: center;
 }
 
-.buttontext {
-    font-size: 1rem;
-    margin-top: 5px;
-}
-
-.navbutton:hover {
-    background: #D1A3D1;
-    cursor: pointer;
-}
-
-.container, .sm-container {
-    display: flex;
-    flex-direction: column;
+.container {
+    min-width: 300px;
     width: 66%;
     margin: auto;
+    height: 100%;
 }
 
-.sm-container {
-    width: 400px;
+.logoimage {
+    width: 90px;
+    height: 90px;
 }
 
-.center-items {
-    justify-content: center;
-    align-items: center;
-}
-
-.card {
+.banner {
     width: 100%;
-    margin: 20px 0px 0px 0px;
-    border: solid 2px #CC99CC;
-    border-radius: 5px;
-    background: white;
-}
-
-.cardheader {
-    font-size: 20px;
-    border-bottom: solid 1px #CC99CC;
-    font-weight: bold;
-    margin: 20px 20px 10px 20px;
-    padding-bottom: 5px;
+    background-image: linear-gradient(#663399, #6633FF, #663399);
+    padding: 20px;
     display: flex;
     flex-direction: row;
 }
 
-.headertext {
+.bannerlogo {
     flex: 1;
-    font-size: 20px;
+    text-align: right;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
 }
 
-.iconbutton {
+.bannertext {
+    flex: 2;
+    color: whitesmoke;
+    margin: 0px 5px;
+}
+
+.bannertext .title {
+    font-size: 24px;
+    margin: 15px 0px;
+    border-bottom: solid 1px whitesmoke;
+}
+
+.bannertext .bannertextdetail {
+    margin-bottom: 10px;
+    color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.bannertextdetail i {
+    margin-right: 10px;
+}
+
+.categoryfilter {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px;
+    width: 100%;
+    border: solid 2px #663399;
+    border-radius: 5px;
+}
+
+.categoryfilter .tab {
+    width: 100%;
+    padding: 10px 0px;
+    font-size: 18px;
     border: none;
     background: transparent;
+    color: #663399;
 }
 
-.iconbutton:hover {
-    cursor: pointer;
+.categoryfilter .tab:hover, .categoryfilter .active {
+    color: whitesmoke;
+    background: #663399;
 }
 
-.cardbody {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 20px 10px 20px;
+@media only screen and (min-width: 650px) {
+    .logoimage {
+        width: 125px;
+        height: 125px;
+    }
+
+    .bannertext .title {
+        font-size: 30px;
+    }
 }
 
-.cardtext {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.carddetails {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.carddetail {
-    flex: 1;
-    font-size: 20px;
-}
-
-.cardlistheader {
-    width: 66%;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 20px;
-}
-
-.bigbutton {
-    border: solid 2px #CC99CC;
-    border-radius: 5px;
-    background: #CC99CC;
-    margin: 10px;
-    padding: 10px;
-    font-size: 18px;
-    min-width: 125px;
-}
-
-.bigbutton:hover {
-    cursor: pointer;
-    background: #D1A3D1;
-}
-
-.pageheader {
-    flex: 1;
-    margin: 20px;
-    font-size: 24px;
-}
-
-.forminput {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    font-size: 18px;
-    justify-content: center;
-}
-
-.forminput input, textarea {
-    font-size: 18px;
-    border: solid 2px #D1A3D1;
-    border-radius: 5px;
-    width: 100%;
-    padding: 5px;
-    margin-top: 3px;
-}
-
-.forminput input:focus-visible, textarea:focus-visible {
-    border-color: #B789B7;
-    outline: none;
-}
-
-.formsection {
-    margin: 20px;
-}
-
-.formsection .header {
-    font-size: 18px;
-    border-bottom: solid 1px #D1A3D1;
-}
-
-.formrow {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-
-.formrow .forminput {
-    flex: 1;
-}
-
-.forminput .checkbox {
-    width: auto;
-}
-
-input[type=checkbox] {
-    transform: scale(1.5);
-    margin: 0px 10px;
-}
-
-.formsubsection {
-    border-bottom: solid 1px #D1A3D1;
-}
-
-.formsectiontoggle {
-    margin: 20px 0px;
-    font-size: 18px;
-}
-
-.cardurl {
-    margin-bottom: 10px;
-    border-bottom: solid 1px #D1A3D1;
-    padding-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.mar-10 {
-    margin: 10px;
+@media only screen and (min-width: 900px) {
+    .bannerlogo {
+        margin-right: 20px;
+    }
+    .bannertext {
+        margin-left: 10px;
+    }
 }
