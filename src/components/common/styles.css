@@ -70,3 +70,21 @@
     justify-content: center;
     align-items: center;
 }
+
+.badgesection {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0px 10px;
+}
+
+.badge {
+    min-width: 110px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    color: whitesmoke;
+    margin: 10px;
+}
