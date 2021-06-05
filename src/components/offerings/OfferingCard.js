@@ -14,7 +14,6 @@ const OfferingCard = ({ accountId, offering }) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        console.log(window.location);
         const href = `${window.location.origin}/${accountId}?offering=${offering.id}`;
         window.location.href = href;
     };

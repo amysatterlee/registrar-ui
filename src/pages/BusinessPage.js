@@ -20,7 +20,9 @@ const BusinessPage = ({
         <>
             <BusinessBanner account={account} />
             {offering ? (
-                <OfferingWidget />
+                <OfferingWidget
+                    offering={offering}
+                />
             ) : (
                 <OfferingsWidget
                     activeTab={activeTab}

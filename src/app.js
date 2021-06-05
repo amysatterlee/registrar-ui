@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { fetchAccount } from './api/accounts';
 import { callApi } from './helpers/helpers';
-import BusinessPage from './containers/BusinessPage';
+import BusinessPage from './pages/BusinessPage';
 import { fetchPublicOffering, fetchPublicOfferings } from './api/offerings';
 
 const parseAccount = (path) => {
