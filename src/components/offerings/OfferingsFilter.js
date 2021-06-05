@@ -19,4 +19,8 @@ const OfferingsFilter = ({ activeTab, tabs }) => {
     );
 };
 
+OfferingsFilter.defaultProps = {
+    tabs: []
+}
+
 export default OfferingsFilter;

@@ -49,8 +49,17 @@ export const deleteEvent = (accountId, eventId, token) => {
     return fetch(url, payload);
 }
 
-export const fetchPublicEvent = (eventId) => {
-    const url = `${BASE_URL}/events/${eventId}`;
+export const fetchPublicOfferings = (accountId, type) => {
+    const url = `${BASE_URL}/public/${accountId}/offerings?offeringType=${type}`;
+    const params = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch(url, params);
+}
+
+export const fetchPublicOffering = (accountId, offeringId) => {
+    const url = `${BASE_URL}/public/${accountId}/offerings/${offeringId}`
     const params = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }

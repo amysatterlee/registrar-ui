@@ -82,6 +82,28 @@
     background: #663399;
 }
 
+.offeringcard {
+    border-bottom: solid 1px #663399;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    background: #663399;
+    border: solid 1px #663399;
+    border-radius: 5px;
+    padding: 10px;
+    color: whitesmoke;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
 @media only screen and (min-width: 650px) {
     .logoimage {
         width: 125px;

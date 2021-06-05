@@ -63,3 +63,10 @@
     font-size: 16px;
     padding: 5px;
 }
+
+.loading {
+    color: #CC99CC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

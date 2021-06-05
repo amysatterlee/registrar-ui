@@ -1,35 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import OfferingsFilter from './OfferingsFilter';
+import OfferingsIndex from './OfferingsIndex';
 
-const OfferingsWidget = ({ account }) => {
-    const [activeTab, setActiveTab] = useState('drop-in');
-
-    const tabs = [
-        {key: 'drop-in', name: 'Drop In', onPress: () => handlePress('drop-in')},
-        {key: 'program', name: 'Programs', onPress: () => handlePress('program')},
-        {key: 'appointment', name: 'By Appointment', onPress: () => handlePress('appointment')}
-    ];
-
-    const handlePress = (type) => {
-        setActiveTab(type);
-        // TODO this is where you will call api to fetch the appropriate offerings
-    };
-
-    const renderActiveTab = () => {
-        switch (activeTab) {
-            case 'drop-in':
-                return <div>Drop In Tab</div>;
-            case 'program':
-                return <div>Programs Tab</div>;
-            case 'appointment':
-                return <div>Appointment Tab</div>;
-        }
-    };
-
+const OfferingsWidget = ({ tabs, activeTab, offerings, loading, accountId }) => {
     return (
         <div className='container'>
             <OfferingsFilter activeTab={activeTab} tabs={tabs}/>
-            {renderActiveTab()}
+            <OfferingsIndex
+                type={activeTab}
+                offerings={offerings}
+                loading={loading}
+                accountId={accountId}
+            />
         </div>
     );
 };
