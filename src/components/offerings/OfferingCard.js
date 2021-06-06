@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../common/Button';
 
 const OfferingCard = ({ accountId, offering }) => {
     const buttonText = () => {
@@ -24,9 +25,7 @@ const OfferingCard = ({ accountId, offering }) => {
                 {offering.title}
             </div>
             <div id='cardbutton'>
-                <button className='button' onClick={handleClick}>
-                    {buttonText()}
-                </button>
+                <Button text={buttonText()} handleClick={handleClick} />
             </div>
         </div>
     )

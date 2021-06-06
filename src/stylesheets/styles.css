@@ -92,16 +92,32 @@
     align-items: center;
 }
 
-.button {
-    background: #663399;
-    border: solid 1px #663399;
-    border-radius: 5px;
-    padding: 10px;
-    color: whitesmoke;
+.offeringheader {
+    font-size: 28px;
+    margin: 10px;
+    padding: 10px 0px;
+    border-bottom: solid 1px grey;
 }
 
-.button:hover {
-    cursor: pointer;
+.offeringdetails {
+    margin: 10px;
+    font-size: 18px;
+}
+
+.formdiv {
+    margin: 10px;
+}
+
+.formheader {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form {
+    margin: 15px auto;
+    width: 66%;
+    font-size: 18px;
 }
 
 @media only screen and (min-width: 650px) {

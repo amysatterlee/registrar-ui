@@ -2,8 +2,6 @@ import React from 'react';
 import BusinessBanner from '../components/banner/BusinessBanner';
 import OfferingsWidget from '../components/offerings/OfferingsWidget';
 import OfferingWidget from '../components/offerings/OfferingWidget';
-import { fetchPublicOfferings } from '../api/offerings';
-import { callApi } from '../helpers/helpers';
 import '../stylesheets/styles.css';
 
 const BusinessPage = ({

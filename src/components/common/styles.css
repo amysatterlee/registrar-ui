@@ -88,3 +88,30 @@
     color: whitesmoke;
     margin: 10px;
 }
+
+.textinput {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin: 10px 0px;
+    border: solid 1px grey;
+    min-width: 300px;
+}
+
+.inputlabel {
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    background: #663399;
+    border: solid 1px #663399;
+    border-radius: 5px;
+    padding: 10px;
+    color: whitesmoke;
+    font-size: 18px;
+}
+
+.button:hover {
+    cursor: pointer;
+}

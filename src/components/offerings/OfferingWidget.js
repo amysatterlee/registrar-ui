@@ -1,5 +1,9 @@
 import React from 'react';
 import Badge from '../common/Badge';
+import DropInForm from '../forms/DropInForm';
+import AppointmentForm from '../forms/AppointmentForm';
+import RegisterForm from '../forms/RegisterForm';
+import '../../stylesheets/styles.css';
 
 const OfferingWidget = ({ offering }) => {
 
@@ -71,14 +75,35 @@ const OfferingWidget = ({ offering }) => {
             default:
                 return 'fas fa-theater-masks fa-lg';
         }
+    };
+    
+    const formHeader = () => {
+        switch (offering.offeringType) {
+            case 'drop-in':
+                return 'Reserve Your Spot Now!';
+            case 'appointment':
+                return 'Request More Information';
+            default:
+                return 'Register Now!';
+        }
+    };
+
+    const renderForm = () => {
+        switch (offering.offeringType) {
+            case 'drop-in':
+                return <DropInForm />;
+            case 'appointment':
+                return <AppointmentForm />;
+            default:
+                return <RegisterForm />;
+        }
     }
-    <i class="fas fa-theater-masks"></i>
 
     return (
         <div className='container'>
             <div className='offering'>
-                <div id='offeringheader'>{offering.title}</div>
-                <div id='offeringdetails'>{offering.description}</div>
+                <div className='offeringheader'>{offering.title}</div>
+                <div className='offeringdetails'>{offering.description}</div>
                 <div className='badgesection'>
                     <Badge
                         text={offering.category}
@@ -98,7 +123,8 @@ const OfferingWidget = ({ offering }) => {
                 </div>
             </div>
             <div className='formdiv'>
-                <form>Form Goes Here</form>
+                <div className='formheader'>{formHeader()}</div>
+                {renderForm()}
             </div>
         </div>
     );

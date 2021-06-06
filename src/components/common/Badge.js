@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles.css';
 
 const Badge = ({ text, color, icon }) => {
     const renderBadge = () => {
@@ -13,5 +14,10 @@ const Badge = ({ text, color, icon }) => {
         </div>
     )
 };
+
+Badge.defaultProps = {
+    text: '',
+    color: 'grey'
+}
 
 export default Badge;
