@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { fetchAccount } from './api/accounts';
 import { callApi } from './helpers/helpers';
 import BusinessPage from './pages/BusinessPage';
-import { fetchPublicOffering, fetchPublicOfferings } from './api/offerings';
+import { fetchPublicOffering, fetchPublicOfferings, offeringSubmission } from './api/offerings';
 
 const parseAccount = (path) => {
   const parts = path.split('/').filter(item => item.length > 0);
@@ -25,6 +25,7 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('drop-in');
   const [offerings, setOfferings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [submitted, setSubmitted] = useState(null);
 
   const tabs = [
     {key: 'drop-in', name: 'Drop In', onPress: () => handleTabPress('drop-in')},
@@ -51,6 +52,14 @@ const App = () => {
         }
     });
   };
+
+  const formSubmission = (offeringId, data) => {
+    callApi({
+      api: offeringSubmission(account.id, offeringId, data),
+      successCb: resp => setSubmitted(true),
+      failureCb: err => console.log(err)
+    });
+  }
 
   useEffect(() => {
     const accountId = parseAccount(window.location.pathname);
@@ -90,6 +99,9 @@ const App = () => {
           loading={loading}
           onTabPress={handleTabPress}
           tabs={tabs}
+          formSubmission={formSubmission}
+          submitted={submitted}
+          clearSubmitted={() => setSubmitted(false)}
         />
       )
     }

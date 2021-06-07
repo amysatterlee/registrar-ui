@@ -5,7 +5,7 @@ import AppointmentForm from '../forms/AppointmentForm';
 import RegisterForm from '../forms/RegisterForm';
 import '../../stylesheets/styles.css';
 
-const OfferingWidget = ({ offering }) => {
+const OfferingWidget = ({ offering, handleSubmit, submitted }) => {
 
     const ageGroupColor = () => {
         switch (offering.ageGroup) {
@@ -93,7 +93,12 @@ const OfferingWidget = ({ offering }) => {
             case 'drop-in':
                 return <DropInForm />;
             case 'appointment':
-                return <AppointmentForm />;
+                return (
+                    <AppointmentForm
+                        submitForm={handleSubmit}
+                        submitted={submitted}
+                    />
+                );
             default:
                 return <RegisterForm />;
         }

@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
+import InformationPopUp from '../common/InformationPopUp';
 
-const AppointmentForm = () => {
+const AppointmentForm = ({ submitForm, submitted }) => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [comment, setComment] = useState('');
+
+    useEffect(() => {
+        if (submitted) {
+            setEmail('');
+            setName('');
+            setPhone('');
+            setComment('');
+        }
+    }, [submitted]);
 
     const changeEmail = (e) => {
         setEmail(e.target.value);
@@ -24,10 +34,16 @@ const AppointmentForm = () => {
         setComment(e.target.value);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('submitting form');
+    const formValidated = () => {
+        // TODO add validation for all fields in form
+        return true;
     }
+
+    const handleSubmit = () => {
+        if (formValidated()) {
+            submitForm({ email, name, phone, comment });
+        }
+    };
 
     return (
         <form className='form'>

@@ -13,8 +13,7 @@ const OfferingCard = ({ accountId, offering }) => {
         }
     };
 
-    const handleClick = (e) => {
-        e.preventDefault();
+    const handleClick = () => {
         const href = `${window.location.origin}/${accountId}?offering=${offering.id}`;
         window.location.href = href;
     };

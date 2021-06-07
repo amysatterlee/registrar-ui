@@ -14,7 +14,8 @@
 .modal {
     background: white;
     min-width: 350px;
-    border: solid 2px #CC99CC;
+    max-width: 700px;
+    border: solid 2px #663399;
     border-radius: 5px;
 }
 
@@ -23,13 +24,15 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    margin: 10px;
 }
 
 .modalheader {
     width: auto;
-    background: #CC99CC;
+    background: #663399;
     font-size: 20px;
     padding: 10px;
+    color: white;
 }
 
 .modaltext {
