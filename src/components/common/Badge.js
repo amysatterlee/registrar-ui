@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import '../../stylesheets/common.css';
 
 const Badge = ({ text, color, icon }) => {
     const renderBadge = () => {

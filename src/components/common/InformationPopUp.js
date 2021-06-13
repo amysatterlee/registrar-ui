@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from './Modal';
-import './styles.css';
+import '../../stylesheets/common.css';
 
 const InformationPopUp = ({ header, text, dismiss }) => {
     return (

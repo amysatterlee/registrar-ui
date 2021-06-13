@@ -120,6 +120,14 @@
     font-size: 18px;
 }
 
+.badgesection {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0px 10px;
+}
+
 @media only screen and (min-width: 650px) {
     .logoimage {
         width: 125px;

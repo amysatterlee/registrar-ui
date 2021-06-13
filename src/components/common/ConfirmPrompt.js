@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from './Modal';
-import './styles.css';
+import '../../stylesheets/common.css';
 
 const ConfirmPrompt = ({ confirmText, confirmButtonText, handleConfirm, handleCancel }) => {
     return (
@@ -14,10 +14,10 @@ const ConfirmPrompt = ({ confirmText, confirmButtonText, handleConfirm, handleCa
                 </div>
             </div>
             <div className='modalbuttons'>
-                <button className='bigbutton' onClick={handleConfirm}>
+                <button className='button' onClick={handleConfirm}>
                     {confirmButtonText}
                 </button>
-                <button className='bigbutton' onClick={handleCancel}>
+                <button className='button' onClick={handleCancel}>
                     Cancel
                 </button>
             </div>

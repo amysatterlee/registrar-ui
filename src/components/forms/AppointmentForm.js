@@ -1,75 +1,114 @@
 import React, { useState, useEffect } from 'react';
-import TextInput from '../common/TextInput';
+import Input from '../common/Input';
 import Button from '../common/Button';
-import InformationPopUp from '../common/InformationPopUp';
+
+const defaultValue = {
+    value: '',
+    valid: true,
+    error: ''
+};
+
+const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const AppointmentForm = ({ submitForm, submitted }) => {
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [comment, setComment] = useState('');
+    const [email, setEmail] = useState(defaultValue);
+    const [name, setName] = useState(defaultValue);
+    const [phone, setPhone] = useState(defaultValue);
+    const [comment, setComment] = useState(defaultValue);
 
     useEffect(() => {
         if (submitted) {
-            setEmail('');
-            setName('');
-            setPhone('');
-            setComment('');
+            setEmail(defaultValue);
+            setName(defaultValue);
+            setPhone(defaultValue);
+            setComment(defaultValue);
         }
     }, [submitted]);
 
     const changeEmail = (e) => {
-        setEmail(e.target.value);
+        const newEmail = { value: e.target.value, valid: true, error: '' };
+        setEmail(newEmail);
     };
 
     const changeName = (e) => {
-        setName(e.target.value);
+        const newName = { value: e.target.value, valid: true, error: '' };
+        setName(newName);
     };
 
     const changePhone = (e) => {
-        setPhone(e.target.value);
+        const newPhone = { value: e.target.value, valid: true, error: '' };
+        setPhone(newPhone);
     };
 
     const changeComment = (e) => {
-        setComment(e.target.value);
+        const newComment = { ...comment, value: e.target.value };
+        setComment(newComment);
     };
 
     const formValidated = () => {
-        // TODO add validation for all fields in form
-        return true;
+        let formValid = true;
+        if (name.value.length == 0) {
+            const newName = { ...name, valid: false, error: 'Please enter a name' };
+            setName(newName);
+            formValid = false;
+        }
+        if (phone.value.length < 10) {
+            const newPhone = { ...phone, valid: false, error: 'Please enter a valid phone number' };
+            setPhone(newPhone);
+            formValid = false;
+        }
+        if (!emailRegex.test(email.value.toLowerCase())) {
+            const newEmail = { ...email, valid: false, error: 'Please enter a valid email' };
+            setEmail(newEmail);
+            formValid = false;
+        }
+        return formValid;
     }
 
     const handleSubmit = () => {
         if (formValidated()) {
-            submitForm({ email, name, phone, comment });
+            submitForm({
+                email: email.value,
+                name: name.value,
+                phone: phone.value,
+                comment: comment.value
+            });
         }
     };
 
     return (
         <form className='form'>
-            <TextInput
+            <Input
                 type='text'
                 label='Email:'
-                value={email}
+                value={email.value}
                 onChange={changeEmail}
+                valid={email.valid}
+                error={email.error}
             />
-            <TextInput
+            <Input
                 type='text'
                 label='Name:'
-                value={name}
+                value={name.value}
                 onChange={changeName}
+                valid={name.valid}
+                error={name.error}
             />
-            <TextInput
+            <Input
                 type='text'
                 label='Phone:'
-                value={phone}
+                value={phone.value}
                 onChange={changePhone}
+                valid={phone.valid}
+                error={phone.error}
             />
-            <TextInput
+            <Input
                 type='textarea'
                 label='Comments/Questions:'
-                value={comment}
+                value={comment.value}
                 onChange={changeComment}
+                valid={comment.valid}
+                error={comment.error}
             />
             <Button text='Submit' handleClick={handleSubmit} />
         </form>
