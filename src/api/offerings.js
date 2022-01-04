@@ -1,6 +1,5 @@
-const BASE_URL = 'https://nrc1bmp5kd.execute-api.us-east-1.amazonaws.com/default';
+import { BASE_URL, API_KEY } from '../config/config';
 import { authHeaders } from '../helpers/helpers';
-const API_KEY = 's8g5HOn0J96hg04h5eYunaLBetyh8fZp6iFyzRiQ';
 
 export const fetchEvents = (id, token) => {
     const url = `${BASE_URL}/accounts/${id}/events`;

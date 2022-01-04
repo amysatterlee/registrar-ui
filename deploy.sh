@@ -1,3 +1,3 @@
 
-aws s3 cp public s3://www.amytest.com/public/ --recursive
-aws s3 cp index.html s3://www.amytest.com/index.html
+aws s3 cp public s3://"S3 BUCKET TO HOST WEBSITE"/public/ --recursive
+aws s3 cp index.html s3://"S3 BUCKET TO HOST WEBSITE"/index.html
